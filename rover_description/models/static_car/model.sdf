@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="static_car">
+    <static>true</static>
+    <link name="body">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://static_car/meshes/mesh.obj</uri>
+            <scale>0.2 0.2 0.2</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://static_car/meshes/mesh.obj</uri>
+            <scale>0.2 0.2 0.2</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

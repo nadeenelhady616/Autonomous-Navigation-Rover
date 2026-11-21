@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="hatchback">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <pose>0 0 0 0 0 1.57079632679</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hatchback/meshes/hatchback.obj</uri>
+            <!-- 0.0254 = inches to metres. 0.00508 = 0.0254 * 0.2, same 0.2 as the static car -->
+            <scale>0.00508 0.00508 0.00508</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0 0 0 1.57079632679</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hatchback/meshes/hatchback.obj</uri>
+            <scale>0.00508 0.00508 0.00508</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

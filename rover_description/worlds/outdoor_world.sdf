@@ -1,0 +1,225 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="outdoor_world">
+
+    <physics name="1ms" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>30.5852</latitude_deg>
+      <longitude_deg>31.5020</longitude_deg>
+      <elevation>20.0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"></plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"></plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"></plugin>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"></plugin>
+    <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"></plugin>
+    <plugin filename="gz-sim-magnetometer-system" name="gz::sim::systems::Magnetometer"></plugin>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"></plugin>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 15 0 0 0</pose>
+      <diffuse>1.0 0.98 0.9 1</diffuse>
+      <specular>0.4 0.4 0.4 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.4 0.2 -0.9</direction>
+    </light>
+
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.6 0.75 0.9 1</background>
+      <shadows>true</shadows>
+      <grid>false</grid>
+    </scene>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.9</mu>
+                <mu2>0.9</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.35 0.35 0.37 1</ambient>
+            <diffuse>0.35 0.35 0.37 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="lane_edge_left">
+      <static>true</static>
+      <pose>0 0.6 0.002 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>60 0.1 0.001</size></box></geometry>
+          <material>
+            <ambient>0.95 0.95 0.95 1</ambient>
+            <diffuse>0.95 0.95 0.95 1</diffuse>
+            <emissive>0.1 0.1 0.1 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="lane_edge_right">
+      <static>true</static>
+      <pose>0 -0.6 0.002 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>60 0.1 0.001</size></box></geometry>
+          <material>
+            <ambient>0.95 0.95 0.95 1</ambient>
+            <diffuse>0.95 0.95 0.95 1</diffuse>
+            <emissive>0.1 0.1 0.1 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    
+   
+    <include>
+      <name>obstacle_hatchback</name>
+      <uri>model://hatchback</uri>
+      <pose>4.66 0.3 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>obstacle_static_car</name>
+      <uri>model://static_car</uri>
+      <pose>9.94 -0.35 0 0 0 1.5708</pose>
+    </include>
+
+    <include>
+      <name>obstacle_person</name>
+      <uri>model://person_walking</uri>
+      <pose>8 0.1 0 0 0 3.1416</pose>
+    </include>
+
+<model name="obstacle_box_5">
+  <static>true</static>
+  <pose>6.5 -0.2 0 0 0 0</pose>
+  <link name="link">
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.2 0.2 0.6</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.2 0.2 0.6</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>1 0.4 0.7 1</ambient>
+        <diffuse>1 0.4 0.7 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+
+
+<model name="obstacle_box_7">
+  <static>true</static>
+  <pose>1 0.3 0 0 0 0</pose>
+  <link name="link">
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.2 0.2 0.6</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.2 0.2 0.6</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>1 0.4 0.7 1</ambient>
+        <diffuse>1 0.4 0.7 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+    <model name="obstacle_cylinder_1">
+      <static>true</static>
+      <pose>15 2 0.6 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><cylinder><radius>0.4</radius><length>1.2</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.4</radius><length>1.2</length></cylinder></geometry>
+          <material>
+            <ambient>0.8 0.7 0.1 1</ambient>
+            <diffuse>0.8 0.7 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <model name="obstacle_cylinder_2">
+      <static>true</static>
+      <pose>25 -3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><cylinder><radius>0.1</radius><length>0.5</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.1</radius><length>0.5</length></cylinder></geometry>
+          <material>
+            <ambient>0.6 0.3 0.6 1</ambient>
+            <diffuse>0.6 0.3 0.6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
